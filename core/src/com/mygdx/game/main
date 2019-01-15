@@ -1,0 +1,58 @@
+package com.mygdx.game;
+
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.PerspectiveCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.Environment;
+
+public class MyGdxGame extends ApplicationAdapter {
+
+	public final float field_of_view=67;
+	public final float camara_near=1;
+	public final float camara_far=300;
+	public final float camara_velocity= 15;
+	public final float camara_degrees_per_pixel= 0.8f;
+	public final float crosshair_size=25;
+
+	public Environment environment;
+	public PerspectiveCamera camera;
+	public SpriteBatch spriteBatch;
+	Texture texture ;
+
+	
+	@Override
+	public void create () {
+	environment=new Environment();
+	spriteBatch=new SpriteBatch();
+
+	camera= new PerspectiveCamera(field_of_view,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+	camera.position.set(0,10f,10f);
+	camera.near=camara_near;
+	camera.far=camara_far;
+
+	texture= new Texture(Gdx.files.internal("interface\\Crosshair.png"));
+	}
+
+
+	//@Override
+	public void render () {
+	    Gdx.gl.glClearColor(0.5f,0.8f,1,1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT| GL20.GL_DEPTH_BUFFER_BIT);
+
+        float crosshair_x= (Gdx.graphics.getWidth()-crosshair_size)/2;
+        float crosshair_y=(Gdx.graphics.getHeight()-crosshair_size)/2;
+		spriteBatch.begin();
+		spriteBatch.draw(texture,crosshair_x,crosshair_y,crosshair_size,crosshair_size);
+		spriteBatch.end();
+	}
+	
+	@Override
+	public void dispose () {
+		texture.dispose();
+		}
+
+	}
+
