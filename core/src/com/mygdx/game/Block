@@ -1,0 +1,31 @@
+package com.mygdx.game;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
+import com.badlogic.gdx.utils.Disposable;
+
+import java.lang.reflect.Type;
+
+public class Block implements Disposable {
+
+    private static ModelBuilder modelBuilder=  new ModelBuilder();
+
+    public Block(Texture texture,Type type){
+
+    }
+
+
+
+
+
+
+
+
+    @Override
+    public void dispose() {
+
+    }
+    public enum Type{
+        DirtBlock;
+    }
+}
